@@ -474,11 +474,3 @@ func maxRuneWidth(str string) int {
 
 	return width
 }
-
-func getFirstRuneAsString(str string) string {
-	if str == "" {
-		return str
-	}
-	r := []rune(str)
-	return string(r[0])
-}
