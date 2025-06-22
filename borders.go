@@ -421,8 +421,17 @@ func renderHorizontalEdge(left, middle, right string, width int) string {
 		middle = " "
 	}
 
-	leftWidth := ansi.StringWidth(left)
-	rightWidth := ansi.StringWidth(right)
+	graphemeWidth := func(s string) int {
+		var width int
+		gr := uniseg.NewGraphemes(s)
+		for gr.Next() {
+			width++
+		}
+		return width
+	}
+
+	leftWidth := graphemeWidth(left)
+	rightWidth := graphemeWidth(right)
 
 	runes := []rune(middle)
 	j := 0
